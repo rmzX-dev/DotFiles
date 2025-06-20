@@ -1,0 +1,78 @@
+{
+    "include": [
+        "/home/aaron/.local/share/waybar/modules/privacy.json",
+        "/home/aaron/.local/share/waybar/modules/wlr-taskbar.json",
+        "/home/aaron/.local/share/waybar/modules/tray.json",
+        "/home/aaron/.local/share/waybar/modules/wlr-taskbar#windows.json",
+        "/home/aaron/.local/share/waybar/modules/image#wallpaper.json",
+        "/home/aaron/.local/share/waybar/modules/custom-workflows.jsonc",
+        "/home/aaron/.local/share/waybar/modules/memory.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-theme.jsonc",
+        "/home/aaron/.local/share/waybar/modules/cpu.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-sensorsinfo.jsonc",
+        "/home/aaron/.local/share/waybar/modules/hyprland-language.jsonc",
+        "/home/aaron/.local/share/waybar/modules/network.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-wallchange.jsonc",
+        "/home/aaron/.local/share/waybar/modules/wlr-taskbar.jsonc",
+        "/home/aaron/.local/share/waybar/modules/clock.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-spotify.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-display.jsonc",
+        "/home/aaron/.local/share/waybar/modules/image#profile.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-gpuinfo#nvidia.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-powermenu.jsonc",
+        "/home/aaron/.local/share/waybar/modules/tray.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-swaync.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-github_hyde.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-gpuinfo#amd.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-cpuinfo.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-wbar.jsonc",
+        "/home/aaron/.local/share/waybar/modules/power-profiles-daemon.jsonc",
+        "/home/aaron/.local/share/waybar/modules/bluetooth.jsonc",
+        "/home/aaron/.local/share/waybar/modules/network#bandwidth.jsonc",
+        "/home/aaron/.local/share/waybar/modules/pulseaudio#microphone.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-cliphist.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-gamemode.jsonc",
+        "/home/aaron/.local/share/waybar/modules/battery.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-updates.jsonc",
+        "/home/aaron/.local/share/waybar/modules/pulseaudio.jsonc",
+        "/home/aaron/.local/share/waybar/modules/idle_inhibitor.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-keybindhint.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-hyprsunset.jsonc",
+        "/home/aaron/.local/share/waybar/modules/privacy.jsonc",
+        "/home/aaron/.local/share/waybar/modules/hyprland-workspaces.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-power.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-gpuinfo#intel.jsonc",
+        "/home/aaron/.local/share/waybar/modules/cava.jsonc",
+        "/home/aaron/.local/share/waybar/modules/mpris.jsonc",
+        "/home/aaron/.local/share/waybar/modules/backlight.jsonc",
+        "/home/aaron/.local/share/waybar/modules/hyprland-window.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-cava.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-hyde-menu.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-gpuinfo.jsonc",
+        "/home/aaron/.local/share/waybar/modules/image#wallpaper.jsonc",
+        "/home/aaron/.local/share/waybar/modules/wlr-taskbar#windows.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-clipboard.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-weather.jsonc",
+        "/home/aaron/.local/share/waybar/modules/custom-dunst.jsonc"
+    ],
+    "privacy": {
+        "icon-size": 10,
+        "icon-size-multiplier": 1
+    },
+    "wlr/taskbar": {
+        "icon-size": 16,
+        "icon-size-multiplier": 1.6
+    },
+    "tray": {
+        "icon-size": 16,
+        "icon-size-multiplier": 1.6
+    },
+    "wlr/taskbar#windows": {
+        "icon-size": 16,
+        "icon-size-multiplier": 1.6
+    },
+    "image#wallpaper": {
+        "size": 30,
+        "icon-size-multiplier": 3
+    }
+}

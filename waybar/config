@@ -1,0 +1,150 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 25,
+    "spacing": 3,
+    "exclusive": true,
+    "margin-top": 5,
+    "margin-bottom": 5,
+    "margin-left": 5,
+    "margin-right": 5,
+    "gtk-layer-shell": true,
+    "fixed-center": true,
+    "modules-left": [
+        "custom/arch",
+        "custom/sep",
+        "hyprland/workspaces",
+        "custom/",
+        "custom/sep",
+        "network"
+    ],
+    "modules-center": [
+        "custom/spotify"
+    ],
+    "modules-right": [
+        "clock",
+        "custom/sep",
+        "battery",
+        "custom/sep",
+        "pulseaudio",
+        "custom/sep",
+        "memory"
+    ],
+    "custom/sep": {
+        "format": "<span color='#EFF0EB'>|</span>",
+        "tooltip": false
+    },
+    "custom/arch": {
+        "format": "<span color='#57C7FF'>   </span>",
+        "rotate": 0,
+        "exec": "echo ; echo  logout",
+        "on-click": "hyde-shell logoutlaunch 2",
+        "menu": "on-click-right",
+        "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/power.xml",
+        "menu-actions": {
+            "shutdown-now": "systemctl shutdown now",
+            "shutdown-wait": "systemctl poweroff",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        },
+        "interval": 86400,
+        "tooltip": true
+    },
+    "hyprland/workspaces": {
+        "format": "<span color='#89b4fa'>{icon}</span>",
+        "focused": "",
+        "default": "○",
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "persistent-workspaces": {
+            "*": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
+        }
+    },
+    "network": {
+        "tooltip": true,
+        "format-wifi": "<span color='#f38ba8'>🌐</span> <span color='#FFFFFF'>{essid}</span>",
+        "rotate": 0,
+        "format-ethernet": "<span color='#5AF78E'>󰈀</span> <span color='#FFFFFF'>{ifname}</span>",
+        "format-disconnected": "<span color='#FF5C57'>󰖪</span> <span color='#FFFFFF'>Disconnected</span>",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "interval": 2
+    },
+    "custom/spotify": {
+        "format": "<span color='#32cd32'></span> <span color='#ffffff'>{}</span>",
+        "max-length": 60,
+        "interval": 10,
+        "exec": "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null || echo 'No music'",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "spotify",
+        "escape": true
+    },
+    "clock": {
+        "format": "<span color='#19FF65'> </span>{:%I:%M %p}",
+        "rotate": 0,
+        "format-alt": " {:%R 󰃭 %d·%m·%y}",
+        "tooltip-format": "<span color='#19FF65'></span> {calendar}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "on-click-right": "mode"
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "<span color='#57C7FF'>{icon}</span> <span color='#FFFFFF'>{capacity}%</span>",
+        "rotate": 0,
+        "format-charging": "<span color='#57C7FF'>󰂄 {capacity}%</span>",
+        "format-plugged": "<span color=' #57C7FF'>󰚥 {capacity}%</span>",
+        "format-alt": "<span color='#FFFFFF'>{time}</span> <span color='#57C7FF'>{icon}</span>",
+        "format-warning": "<span color='#F3F99D'>󰂃 {capacity}%</span>",
+        "format-critical": "<span color='#F21013'>󰂎 {capacity}%</span>",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "pulseaudio": {
+        "format": "<span color='#F21013'> </span> <span color='#FFFFFF'>{volume}%</span>",
+        "rotate": 0,
+        "format-muted": "<span color='#F21013'>婢 </span> <span color='#FFFFFF'>Muted</span>",
+        "on-click": "pavucontrol -t 3",
+        "on-click-right": "hyde-shell volumecontrol -s ''",
+        "on-click-middle": "hyde-shell volumecontrol -o m",
+        "on-scroll-up": "hyde-shell volumecontrol -o i",
+        "on-scroll-down": "hyde-shell volumecontrol -o d",
+        "tooltip-format": "<span color='#F21013'> </span> <span color='#FFFFFF'>{desc} // {volume}%</span>",
+        "scroll-step": 5
+    },
+    "memory": {
+        "states": {
+            "c": 90,
+            "h": 60,
+            "m": 30
+        },
+        "interval": 30,
+        "format": "<span color='#FFFE3E'>󰍛 /span> <span color='#FFFFFF'>{used}GB</span>",
+        "rotate": 0,
+        "format-m": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
+        "format-h": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
+        "format-c": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
+        "tooltip": true,
+        "tooltip-format": "<span color='#FFFE3E'>󰍛 {percentage}%</span>\n<span color='#FFFFFF'>󰘚 {used:0.1f}GB/{total:0.1f}GB</span>"
+    }
+}

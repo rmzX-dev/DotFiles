@@ -1,0 +1,103 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "height": 25,
+  "spacing": 3,
+  "exclusive": true,
+  "margin-top": 5,
+  "margin-bottom": 5,
+  "margin-left": 5,
+  "margin-right": 5,
+  "gtk-layer-shell": true,
+  "fixed-center": true,
+  "modules-left": [
+    "custom/arch",
+    "custom/sep",
+    "hyprland/workspaces",
+    "custom/sep",
+    "network"
+  ],
+  "modules-center": [
+    "custom/spotify"
+  ],
+  "modules-right": [
+    "clock#date",
+    "custom/sep",
+    "clock#time",
+    "custom/sep",
+    "battery",
+    "custom/sep",
+    "pulseaudio"
+  ],
+  "custom/sep": {
+    "format": "<span color='#ffffff'>|</span>",
+    "tooltip": false
+  },
+  "custom/arch": {
+    "format": "<span color='#89b4fa'>   </span>",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "format": "<span color='#89b4fa'>{icon}</span>",
+    "focused": "",
+    "default": "○",
+    "on-click": "activate",
+    "active-only": false,
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+"custom/spotify": {
+  "format": "<span color='#32cd32'></span> <span color='#ffffff'>{}</span>",
+  "max-length": 60,
+  "interval": 10,
+  "exec": "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null || echo 'No music'",
+  "on-click": "playerctl play-pause",
+  "on-click-right": "spotify",
+  "escape": true
+},
+  "clock#date": {
+    "format": "<span color='#cba6f7'></span> <span color='#ffffff'>{:%a %d %b}</span>",
+    "tooltip": false
+  },
+  "clock#time": {
+    "format": "<span color='#a6e3a1'></span> <span color='#ffffff'>{:%H:%M}</span>",
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span color='#f38ba8'>{icon}</span> <span color='#ffffff'>{capacity}%</span>",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "format-charging": "<span color='#f38ba8'></span> <span color='#ffffff'>{capacity}%</span>",
+    "tooltip": true,
+    "tooltip-format": "{time}"
+  },
+  "pulseaudio": {
+    "format": "<span color='#cba6f7'> </span> <span color='#ffffff'>{volume:2}%   </span>",
+    "format-muted": "<span color='#a6adc8'> MUTE</span>",
+    "scroll-step": 5,
+    "on-click": "pamixer -t",
+    "on-click-right": "pavucontrol"
+  },
+  "network": {
+    "format": "<span color='#f38ba8'>🌐</span> <span color='#ffffff'>{}</span>",
+    "interval": 15,
+    "exec": "iwgetid -r || echo 'Offline'",
+    "tooltip": false
+  }
+} 
