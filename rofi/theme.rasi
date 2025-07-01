@@ -1,6 +1,8 @@
 * {
     main-bg:            rgba(16, 16, 16, 0.1);
     main-fg:           rgba(240, 240, 240, 1);
+    main-br:rgba(44, 44, 44, 0.8);
+    main-ex:rgba(49, 49, 49, 0.8);
     select-bg:          rgba(87, 199, 255, 0.2);
     select-fg:          rgba(87, 199, 255, 1);
 }
