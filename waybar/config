@@ -1,150 +1,371 @@
 {
-    "layer": "bottom",
-    "position": "top",
-    "height": 25,
-    "spacing": 3,
-    "exclusive": true,
-    "margin-top": 5,
-    "margin-bottom": 5,
-    "margin-left": 5,
-    "margin-right": 5,
-    "gtk-layer-shell": true,
-    "fixed-center": true,
-    "modules-left": [
-        "custom/arch",
-        "custom/sep",
-        "hyprland/workspaces",
-        "custom/",
-        "custom/sep",
-        "network"
-    ],
-    "modules-center": [
-        "custom/spotify"
-    ],
-    "modules-right": [
-        "clock",
-        "custom/sep",
-        "battery",
-        "custom/sep",
-        "pulseaudio",
-        "custom/sep",
-        "memory"
-    ],
-    "custom/sep": {
-        "format": "<span color='#EFF0EB'>|</span>",
-        "tooltip": false
+  "layer": "bottom",
+  "position": "top",
+  "height": 25,
+  "exclusive": true,
+  "margin-top": 3,
+  "gtk-layer-shell": true,
+  "fixed-center": true,
+  "modules-left": [
+    "group/pill#left1",
+    "group/pill#left2"
+  ],
+  "group/pill#left1": {
+    "orientation": "inherit",
+    "modules": [
+      "idle_inhibitor",
+      "clock"
+    ]
+  },
+  "group/pill#left2": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/spotify"
+    ]
+  },
+  "modules-center": [
+    "group/pill#center"
+  ],
+  "group/pill#center": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/arch",
+      "hyprland/workspaces"
+    ]
+  },
+  "modules-right": [
+    "group/pill#right1",
+    "group/pill#right2",
+    "group/pill#right3"
+  ],
+  "group/pill#right1": {
+    "orientation": "inherit",
+    "modules": [
+      "backlight",
+      "pulseaudio",
+      "battery"
+    ]
+  },
+  "group/pill#right2": {
+    "orientation": "inherit",
+    "modules": [
+      "tray",
+      "custom/updates"
+    ]
+  },
+  "group/pill#right3": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/wallchange",
+      "custom/theme",
+      "custom/hyde-menu",
+      "custom/power"
+    ]
+  },
+  "custom/sep": {
+    "format": "<span color='#ffffff'>|</span>",
+    "tooltip": false
+  },
+  "custom/arch": {
+    "format": "<span color='#89b4fa'> </span>",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "rotate": 0,
+    "format-alt": "{:%R 󰃭 %d·%m·%y}",
+    "tooltip-format": "<span>{calendar}</span>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b>{}</b></span>"
+      }
     },
-    "custom/arch": {
-        "format": "<span color='#57C7FF'>   </span>",
-        "rotate": 0,
-        "exec": "echo ; echo  logout",
-        "on-click": "hyde-shell logoutlaunch 2",
-        "menu": "on-click-right",
-        "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/power.xml",
-        "menu-actions": {
-            "shutdown-now": "systemctl shutdown now",
-            "shutdown-wait": "systemctl poweroff",
-            "reboot": "reboot",
-            "suspend": "systemctl suspend",
-            "hibernate": "systemctl hibernate"
-        },
-        "interval": 86400,
-        "tooltip": true
-    },
-    "hyprland/workspaces": {
-        "format": "<span color='#89b4fa'>{icon}</span>",
-        "focused": "",
-        "default": "○",
-        "on-click": "activate",
-        "active-only": false,
-        "all-outputs": true,
-        "persistent-workspaces": {
-            "*": [
-                1,
-                2,
-                3,
-                4,
-                5
-            ]
-        }
-    },
-    "network": {
-        "tooltip": true,
-        "format-wifi": "<span color='#f38ba8'>🌐</span> <span color='#FFFFFF'>{essid}</span>",
-        "rotate": 0,
-        "format-ethernet": "<span color='#5AF78E'>󰈀</span> <span color='#FFFFFF'>{ifname}</span>",
-        "format-disconnected": "<span color='#FF5C57'>󰖪</span> <span color='#FFFFFF'>Disconnected</span>",
-        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
-        "interval": 2
-    },
-    "custom/spotify": {
-        "format": "<span color='#32cd32'></span> <span color='#ffffff'>{}</span>",
-        "max-length": 60,
-        "interval": 10,
-        "exec": "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null || echo 'No music'",
-        "on-click": "playerctl play-pause",
-        "on-click-right": "spotify",
-        "escape": true
-    },
-    "clock": {
-        "format": "<span color='#19FF65'> </span>{:%I:%M %p}",
-        "rotate": 0,
-        "format-alt": " {:%R 󰃭 %d·%m·%y}",
-        "tooltip-format": "<span color='#19FF65'></span> {calendar}",
-        "calendar": {
-            "mode": "month",
-            "mode-mon-col": 3,
-            "on-scroll": 1,
-            "on-click-right": "mode"
-        },
-        "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
-        }
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "<span color='#57C7FF'>{icon}</span> <span color='#FFFFFF'>{capacity}%</span>",
-        "rotate": 0,
-        "format-charging": "<span color='#57C7FF'>󰂄 {capacity}%</span>",
-        "format-plugged": "<span color=' #57C7FF'>󰚥 {capacity}%</span>",
-        "format-alt": "<span color='#FFFFFF'>{time}</span> <span color='#57C7FF'>{icon}</span>",
-        "format-warning": "<span color='#F3F99D'>󰂃 {capacity}%</span>",
-        "format-critical": "<span color='#F21013'>󰂎 {capacity}%</span>",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-    "pulseaudio": {
-        "format": "<span color='#F21013'> </span> <span color='#FFFFFF'>{volume}%</span>",
-        "rotate": 0,
-        "format-muted": "<span color='#F21013'>婢 </span> <span color='#FFFFFF'>Muted</span>",
-        "on-click": "pavucontrol -t 3",
-        "on-click-right": "hyde-shell volumecontrol -s ''",
-        "on-click-middle": "hyde-shell volumecontrol -o m",
-        "on-scroll-up": "hyde-shell volumecontrol -o i",
-        "on-scroll-down": "hyde-shell volumecontrol -o d",
-        "tooltip-format": "<span color='#F21013'> </span> <span color='#FFFFFF'>{desc} // {volume}%</span>",
-        "scroll-step": 5
-    },
-    "memory": {
-        "states": {
-            "c": 90,
-            "h": 60,
-            "m": 30
-        },
-        "interval": 30,
-        "format": "<span color='#FFFE3E'>󰍛 /span> <span color='#FFFFFF'>{used}GB</span>",
-        "rotate": 0,
-        "format-m": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
-        "format-h": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
-        "format-c": "<span color='#FFFE3E'>󰍛 </span><span color='#FFFFFF'>{used}GB</span>",
-        "tooltip": true,
-        "tooltip-format": "<span color='#FFFE3E'>󰍛 {percentage}%</span>\n<span color='#FFFFFF'>󰘚 {used:0.1f}GB/{total:0.1f}GB</span>"
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
     }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "rotate": 0,
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰛊"
+    },
+    "justify": "center",
+    "tooltip": "true",
+    "tooltip-format-activated": "<span foreground='#98c379'>󰅶 Caffeine Mode Active</span>\nPrevents system from going to sleep",
+    "tooltip-format-deactivated": "<span foreground='#e06c75'>󰛊 Caffeine Mode Inactive</span>\nSystem will follow normal power settings"
+  },
+  "custom/spotify": {
+    "exec": "playerctl metadata --format '{{title}} - {{artist}}' 2>/dev/null || echo 'No music'",
+    "format": "<span color='#32cd32'></span> <span color='#ffffff'>{}</span>",
+    "rotate": 0,
+    "max-length": 40,
+    "interval": 1,
+    "on-click": "playerctl play-pause --player spotify",
+    "on-click-middle": "playerctl stop --player spotify",
+    "on-scroll-up": "hyde-shell volumecontrol -p spotify i",
+    "on-scroll-down": "hyde-shell volumecontrol -p spotify d",
+    "tooltip": true,
+    "menu": "on-click-right",
+    "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/spotify.xml",
+    "menu-actions": {
+      "play-pause": "playerctl play-pause --player spotify",
+      "next": "playerctl next --player spotify",
+      "previous": "playerctl previous --player spotify",
+      "stop": "playerctl stop --player spotify",
+      "shuffle": "playerctl shuffle toggle --player spotify",
+      "repeat": "playerctl loop Track --player spotify",
+      "loop": "playerctl loop Playlist --player spotify",
+      "disable-loop": "playerctl loop None --player spotify",
+      "volume": "hyde-shell volumecontrol -p spotify",
+      "open": "hyprctl dispatch exec spotify || xdg-open spotify"
+    }
+  },
+  "hyprland/workspaces": {
+    "rotate": 0,
+    "class": "no-margin-padding",
+    "all-outputs": true,
+    "active-only": false,
+    "on-click": "activate",
+    "disable-scroll": false,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "hyprland/window": {
+    "format": "  {0}",
+    "rotate": 0,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*)@archlinux:(.*)": "$1 ",
+      "(.*) — Mozilla Firefox": "$1 󰈹",
+      "(.*)Mozilla Firefox": "Firefox 󰈹",
+      "(.*) - Visual Studio Code": "$1 󰨞",
+      "(.*)Visual Studio Code": "Code 󰨞",
+      "(.*) - Code - OSS": "$1 󰨞",
+      "(.*)Code - OSS": "Code 󰨞",
+      "(.*) — Dolphin": "$1 󰉋",
+      "(.*)Spotify": "Spotify 󰓇",
+      "(.*)Steam": "Steam 󰓓",
+      "(.*) - Discord": "$1  ",
+      "(.*)Netflix": "Netflix 󰝆 ",
+      "(.*) — Google chrome": "$1  ",
+      "(.*)Google chrome": "Google chrome  ",
+      "(.*) — Github": "$1  ",
+      "(.*)Github": "Github ",
+      "(.*)Spotify Free": "Spotify 󰓇",
+      "(.*)Spotify Premiun": "Spotify 󰓇"
+    },
+    "max-length": 50
+  },
+  "backlight": {
+    "rotate": 0,
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-scroll-up": "hyde-shell brightnesscontrol i 1",
+    "on-scroll-down": "hyde-shell brightnesscontrol d 1",
+    "min-length": 6,
+    "tooltip": true,
+    "tooltip-format": "Backlight level: {icon} {percent}%"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}",
+    "rotate": 0,
+    "format-muted": "婢",
+    "on-click": "pavucontrol -t 3",
+    "on-click-right": "hyde-shell volumecontrol -s ''",
+    "on-click-middle": "hyde-shell volumecontrol -o m",
+    "on-scroll-up": "hyde-shell volumecontrol -o i",
+    "on-scroll-down": "hyde-shell volumecontrol -o d",
+    "tooltip-format": "{icon} {desc} // {volume}%",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "rotate": 0,
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "tray": {
+    "spacing": 5
+  },
+  "custom/updates": {
+    "exec": "hyde-shell  systemupdate",
+    "return-type": "json",
+    "format": "{0}",
+    "rotate": 0,
+    "on-click": "hyprctl dispatch exec -- hyde-shell systemupdate up",
+    "interval": 86400,
+    "tooltip": true,
+    "signal": 20
+  },
+  "custom/wallchange": {
+    "format": "{0}",
+    "rotate": 0,
+    "exec": "echo ; echo 󰆊 switch wallpaper",
+    "on-click": "hyde-shell wallpaper -n",
+    "on-click-right": "hyde-shell wallpaper -p",
+    "on-click-middle": "hyde-shell wallpaper --select",
+    "interval": 86400,
+    "tooltip": true
+  },
+  "custom/theme": {
+    "format": "{0}",
+    "rotate": 0,
+    "exec": "echo ; echo 󰟡 switch theme",
+    "on-click": "hyde-shell themeswitch -n",
+    "on-click-right": "hyde-shell themeswitch -p",
+    "on-click-middle": "sleep 0.1 && hyde-shell themeselect",
+    "interval": 86400,
+    "tooltip": true
+  },
+  "custom/wbar": {
+    "format": "{0}",
+    "rotate": 0,
+    "exec": "echo ; echo  switch bar //  dock",
+    "on-click": "hyde-shell waybar -n",
+    "on-click-right": "hyde-shell waybar -p",
+    "on-click-middle": "hyde-shell quickapps",
+    "interval": 86400,
+    "tooltip": true
+  },
+  "custom/cliphist": {
+    "format": "{0}",
+    "rotate": 0,
+    "exec": "echo ; echo 󰅇 clipboard history",
+    "on-click": "sleep 0.1 && hyde-shell cliphist -c",
+    "menu": "on-click-right",
+    "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/clipboard.xml",
+    "menu-actions": {
+      "favorites": "hyde-shell cliphist --favorites",
+      "history": "hyde-shell cliphist --copy",
+      "delete-history": "hyde-shell cliphist --delete",
+      "manage-favorites": "hyde-shell cliphist 'Manage Favorites'",
+      "clear-history": "hyde-shell cliphist --wipe"
+    },
+    "interval": 86400,
+    "tooltip": true
+  },
+  "custom/hyde-menu": {
+    "format": " ",
+    "tooltip": "Right-click for more options",
+    "menu": "on-click-right",
+    "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/hyde-menu.xml",
+    "menu-actions": {
+      "animations-select": "hyde-shell animations --select",
+      "wallpaper-select": "hyde-shell wallpaper --select --global",
+      "wallpaper-next": "hyde-shell wallpaper --backend swww --next --global",
+      "wallpaper-previous": "hyde-shell wallpaper --backend swww --previous --global",
+      "wallpaper-random": "hyde-shell wallpaper --backend swww --random --global",
+      "theme-next": "hyde-shell themeswitch -n",
+      "theme-previous": "hyde-shell themeswitch -p",
+      "theme-select": "hyde-shell themeselect",
+      "theme-import": "gnome-terminal -- hyde-shell theme.import --select",
+      "waybar-restart": "hyde-shell waybar -ubg",
+      "waybar-reload-css": "sed -i '${/^$/d;}'  $XDG_CONFIG_HOME/waybar/style.css",
+      "waybar-layout-select": "hyde-shell waybar --select",
+      "waybar-layout-next": "hyde-shell waybar --update --next",
+      "waybar-layout-previous": "hyde-shell waybar --update --prev",
+      "workflows-select": "hyde-shell workflows --select;pkill -RTMIN+19 waybar",
+      "shaders-select": "hyde-shell shaders --select;pkill -RTMIN+19 waybar",
+      "keybinds-hint": "hyde-shell keybinds_hint",
+      "about-hyde": "xdg-open https://hydeproject.pages.dev"
+    }
+  },
+  "custom/power": {
+    "format": "{0}",
+    "rotate": 0,
+    "exec": "echo ; echo  logout",
+    "on-click": "hyde-shell logoutlaunch 2",
+    "menu": "on-click-right",
+    "menu-file": "${HYDE_WAYBAR_MENU_DIR:-$XDG_DATA_HOME/waybar/menus}/power.xml",
+    "menu-actions": {
+      "shutdown-now": "systemctl shutdown now",
+      "shutdown-wait": "systemctl poweroff",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate"
+    },
+    "interval": 86400,
+    "tooltip": true
+  },
+      "wlr/taskbar": {
+        "icon-size": "This is a placeholder -> actual size = font * multiplier", 
+        "icon-size-multiplier": 1.6
+    },
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "rotate": 0,
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": ""
+    },
+    "max-length": 1000,
+    "interval": 1
+  }
 }
