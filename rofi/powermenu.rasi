@@ -1,5 +1,5 @@
 configuration {
-    font: "FiraCode Nerd Font 12";
+    font: "Cascadia Code 14";
     width: 200px;
     lines: 4;
     padding: 15;
