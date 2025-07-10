@@ -8,7 +8,8 @@
   "fixed-center": true,
   "modules-left": [
     "group/pill#left1",
-    "group/pill#left2"
+    "group/pill#left2",
+    "group/pill#left3"
   ],
   "group/pill#left1": {
     "orientation": "inherit",
@@ -21,6 +22,12 @@
     "orientation": "inherit",
     "modules": [
       "custom/spotify"
+    ]
+  },
+  "group/pill#left3": {
+    "orientation": "inherit",
+    "modules": [
+      "network"
     ]
   },
   "modules-center": [
@@ -49,7 +56,9 @@
   "group/pill#right2": {
     "orientation": "inherit",
     "modules": [
-      "tray",
+      "cpu",
+      "memory",
+      "custom/temperature",
       "custom/updates"
     ]
   },
@@ -57,7 +66,8 @@
     "orientation": "inherit",
     "modules": [
       "custom/wallchange",
-      "custom/theme",
+      "custom/wbar",
+      "custom/cliphist",
       "custom/hyde-menu",
       "custom/power"
     ]
@@ -152,11 +162,11 @@
     }
   },
   "hyprland/window": {
-    "format": "  {0}",
+    "format": "  {0}",
     "rotate": 0,
     "separate-outputs": true,
     "rewrite": {
-      "(.*)@archlinux:(.*)": "$1 ",
+      "(.*)@archlinux:(.*)": "$1 ",
       "(.*) — Mozilla Firefox": "$1 󰈹",
       "(.*)Mozilla Firefox": "Firefox 󰈹",
       "(.*) - Visual Studio Code": "$1 󰨞",
@@ -166,16 +176,26 @@
       "(.*) — Dolphin": "$1 󰉋",
       "(.*)Spotify": "Spotify 󰓇",
       "(.*)Steam": "Steam 󰓓",
-      "(.*) - Discord": "$1  ",
+      "(.*) - Discord": "$1  ",
       "(.*)Netflix": "Netflix 󰝆 ",
-      "(.*) — Google chrome": "$1  ",
-      "(.*)Google chrome": "Google chrome  ",
-      "(.*) — Github": "$1  ",
-      "(.*)Github": "Github ",
+      "(.*) — Google chrome": "$1  ",
+      "(.*)Google chrome": "Google chrome  ",
+      "(.*) — Github": "$1  ",
+      "(.*)Github": "Github ",
       "(.*)Spotify Free": "Spotify 󰓇",
       "(.*)Spotify Premiun": "Spotify 󰓇"
     },
     "max-length": 50
+  },
+  "wlr/taskbar": {
+    "icon-size": 16,
+    "icon-size-multiplier": 1.6,
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "Alacritty"
+    ],
+    "tooltip": true
   },
   "backlight": {
     "rotate": 0,
@@ -249,6 +269,57 @@
   },
   "tray": {
     "spacing": 5
+  },
+  "cpu": {
+    "format": "{icon} {usage}%",
+    "format-icons": [
+      "󰘚",
+      "󰘚",
+      "󰘚",
+      "󰘚",
+      "󰘚"
+    ],
+    "on-click": "gnome-system-monitor",
+    "interval": 1,
+    "tooltip": true
+  },
+  "memory": {
+    "format": "{icon} {percentage}%",
+    "format-icons": [
+      "󰍛",
+      "󰍛",
+      "󰍛",
+      "󰍛",
+      "󰍛"
+    ],
+    "on-click": "gnome-system-monitor",
+    "interval": 1,
+    "tooltip": true
+  },
+  "network": {
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "{icon} {ipaddr}",
+    "format-disconnected": "{icon} Disconnected",
+    "format-icons": {
+      "wifi": [
+        "󰤨",
+        "󰤨",
+        "󰤨",
+        "󰤨",
+        "󰤨"
+      ],
+      "ethernet": "󰈀",
+      "disconnected": "󰤭"
+    },
+    "on-click": "nm-connection-editor",
+    "tooltip": true
+  },
+  "custom/temperature": {
+    "exec": "sensors | grep 'Core 0' | awk '{print $3}' | sed 's/+//' 2>/dev/null || echo 'N/A'",
+    "format": "🌡️ {}",
+    "interval": 5,
+    "tooltip": true,
+    "on-click": "gnome-system-monitor"
   },
   "custom/updates": {
     "exec": "hyde-shell  systemupdate",
@@ -350,10 +421,6 @@
     "interval": 86400,
     "tooltip": true
   },
-      "wlr/taskbar": {
-        "icon-size": "This is a placeholder -> actual size = font * multiplier", 
-        "icon-size-multiplier": 1.6
-    },
   "mpris": {
     "format": "{player_icon} {dynamic}",
     "rotate": 0,
