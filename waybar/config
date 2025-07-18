@@ -1,9 +1,9 @@
 {
   "layer": "bottom",
   "position": "top",
-  "height": 25,
+  "height": 10,
   "exclusive": true,
-  "margin-top": 3,
+  "margin-top": 0,
   "gtk-layer-shell": true,
   "fixed-center": true,
   "modules-left": [
